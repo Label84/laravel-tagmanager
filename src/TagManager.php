@@ -41,9 +41,9 @@ class TagManager
         return $this;
     }
 
-    public function search(array $variables = []): self
+    public function setUserId(string $userId): self
     {
-        $this->data->push(['event' => 'search'] + $variables);
+        $this->data->push(['user_id' => $userId]);
 
         return $this;
     }

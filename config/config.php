@@ -22,4 +22,15 @@ return [
      * You probably won't need to change this.
      */
     'session_name' => 'tagmanager',
+
+    /*
+     * (optional)
+     *
+     * The key of the User model that will be used for the User-ID feature.
+     *
+     * The key cannot contain data that allows Google to personally identify an invidual,
+     * such as: name, email, phone etc.
+     * https://developers.google.com/analytics/devguides/collection/ga4/policy
+     */
+    'user_id_key' => env('GOOGLE_TAG_MANAGER_USER_ID_KEY', 'id'),
 ];

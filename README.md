@@ -11,6 +11,8 @@ An easier way to add Google Tag Manager to your Laravel application. Including r
 - [Laravel support](#laravel-support)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Events](#events)
+  - [User-ID](#user-id)
 - [Tests](#tests)
 - [License](#license)
 
@@ -79,7 +81,7 @@ GOOGLE_TAG_MANAGER_ID=
 GOOGLE_TAG_MANAGER_ENABLED=true
 ```
 
-Go to ``https://tagmanager.google.com/`` and copy the 'Container ID' of the account (it looks like GTM-XXXXXXX).
+Go to ``https://tagmanager.google.com`` and copy the 'Container ID' of the account (it looks like GTM-XXXXXXX).
 
 ## Usage
 
@@ -91,16 +93,40 @@ use Label84\TagManager\Facades\TagManager;
 TagManager::push(['foo' => 'bar']);
 ```
 
-You can also use the following methods. These will automatically set the recommended event name.
+### Events
+
+You can also use the following methods. These will automatically set the correct event key and value.
 
 ```php
-TagManager::event('kissed', ['foo' => 'bar', 'kiss' => 'dreaming']);
+use Label84\TagManager\Facades\TagManager;
+
+TagManager::event('kissed', ['status' => 'failed', 'count' => 0]);
 TagManager::login(['foo' => 'bar']);
 TagManager::register(['foo' => 'bar']);
-TagManager::search(['foo' => 'bar']);
 ```
 
 You can find a list of recommended events on: ``https://support.google.com/analytics/answer/9267735?hl=en``
+
+### User-ID
+
+This package also supports the User-ID feature.
+
+To start using the User-ID feature you've to add the TagManagerUserIdMiddleware in your 'web' middleware group directly after the TagManagerMiddleware.
+
+```php
+// app/Http/Kernel.php
+
+protected $middlewareGroups = [
+    'web' => [
+        ...
+        \Label84\TagManager\Http\Middleware\TagManagerMiddleware::class,
+        \Label84\TagManager\Http\Middleware\TagManagerUserIdMiddleware::class,
+        ...
+```
+
+By default the 'id' of the User model will be used. You change the key in ``config/tagmanager.php``.
+
+You can find more information about this feature on: ``https://developers.google.com/analytics/devguides/collection/ga4/user-id?technology=tagmanager``
 
 ## Tests
 
