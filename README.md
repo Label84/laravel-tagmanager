@@ -4,7 +4,6 @@
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Quality Score](https://img.shields.io/scrutinizer/g/label84/laravel-tagmanager.svg?style=flat-square)](https://scrutinizer-ci.com/g/label84/laravel-tagmanager)
 [![Total Downloads](https://img.shields.io/packagist/dt/label84/laravel-tagmanager.svg?style=flat-square)](https://packagist.org/packages/label84/laravel-tagmanager)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/label84/laravel-tagmanager/run-tests?label=Tests&style=flat-square)
 
 An easier way to add Google Tag Manager to your Laravel application. Including recommended GTM events support. 
 
