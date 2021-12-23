@@ -3,6 +3,7 @@
 namespace Label84\TagManager\View\Components;
 
 use Illuminate\Session\Store as Session;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use Label84\TagManager\TagManager;
@@ -25,7 +26,9 @@ class Head extends Component
 
     public function render(): View
     {
-        $data = $this->session->get(config('tagmanager.session_name'))->merge($this->tagManager->get());
+        $sessionData = $this->session->get(config('tagmanager.session_name')) ?? new Collection();
+
+        $data = $sessionData->merge($this->tagManager->get());
 
         $this->tagManager->clear();
 
