@@ -13,6 +13,8 @@ An easier way to add Google Tag Manager to your Laravel application. Including r
 - [Usage](#usage)
   - [Events](#events)
   - [User-ID](#user-id)
+  - [Ecommerce (GA4)](#ecommerce-ga4)
+  - [Ecommerce (UA)](#ecommerce-ua)
 - [Tests](#tests)
 - [License](#license)
 
@@ -126,7 +128,99 @@ protected $middlewareGroups = [
 
 By default the 'id' of the User model will be used. You change the key in ``config/tagmanager.php``.
 
-You can find more information about this feature on: ``https://developers.google.com/analytics/devguides/collection/ga4/user-id?technology=tagmanager``
+More information: ``https://developers.google.com/analytics/devguides/collection/ga4/user-id?technology=tagmanager``
+
+### Ecommerce (GA4)
+
+You can use the following snippets to trigger an Ecommerce event with Google Analytics 4 (GA4).
+
+```php
+use Label84\TagManager\Facades\TagManager;
+
+$item1 = [
+    'item_name' => 'Triblend Android T-Shirt',
+    'item_id' => '12345',
+    'price' => 15.25,
+    'item_brand' => 'Google',
+    'item_category' => 'Apparel',
+    'item_variant' => 'Gray',
+    'quantity' => 1,
+];
+
+$item2 = [
+    'item_name' => 'Donut Friday Scented T-Shirt',
+    'item_id' => '67890',
+    'price' => 33.75,
+    'item_brand' => 'Google',
+    'item_category' => 'Apparel',
+    'item_variant' => 'Black',
+    'quantity' => 1
+];
+
+$items = [
+    $item1,
+    $item2,
+];
+
+// Product views and interactions
+TagManager::viewItemList(array $items);
+TagManager::viewItem(array $items);
+TagManager::selectItem(array $items);
+
+// Promotion views and interactions
+TagManager::viewPromotion(array $items);
+TagManager::selectPromotion(array $items);
+
+// Pre-purchase interactions
+TagManager::addToWishList(string $currency, float $value, array $items);
+TagManager::addToCart(array $items);
+TagManager::removeFromCart(array $items);
+TagManager::viewCart(string $currency, float $value, array $items);
+
+// Purchases, checkouts, and refunds
+TagManager::beginCheckout(array $items);
+TagManager::addPaymentInfo(string $currency, float $value, string $coupon, string $paymentType, array $items);
+TagManager::addShippingInfo(string $currency, float $value, string $coupon, string $shippingTier, array $items);
+TagManager::purchase(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, string $coupon, array $items);
+TagManager::refund(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, string $coupon, array $items);
+```
+
+More information: ``https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtm``
+
+### Ecommerce (UA)
+
+You can use the following snippet to trigger an Ecommerce purchase event with Universal Analytics (UA).
+
+```php
+use Label84\TagManager\Facades\TagManager;
+
+TagManager::push(['ecommerce' => [
+    'purchase' => [
+        'actionField' => [
+            'id' => 'T12345',
+            'affiliation' => 'Online Store',
+            'revenue' => '35.43',
+            'tax' => '4.90',
+            'shipping' => '5.99',
+            'coupon' => 'SUMMER_SALE',
+        ],
+        'products' => [[
+            'name' => 'Triblend Android T-Shirt',
+            'id' => '12345',
+            'price' => '15.25',
+            'brand' => 'Google',
+            'category' => 'Apparel',
+            'variant' => 'Gray',
+            'quantity' => 1,
+            'coupon' => '',
+        ], [
+            // more items..
+        ]],
+    ],
+]]);
+```
+
+More information: ``https://developers.google.com/analytics/devguides/collection/ua/gtm/enhanced-ecommerce#purchases``
 
 ## Tests
 
