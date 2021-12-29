@@ -14,6 +14,8 @@ An easier way to add Google Tag Manager to your Laravel application. Including r
   - [Events](#events)
   - [User-ID](#user-id)
   - [Ecommerce (GA4)](#ecommerce-ga4)
+    - [Ecommerce Item](#ecommerce-item)
+    - [Ecommerce Events](#ecommerce-events)
   - [Ecommerce (UA)](#ecommerce-ua)
 - [Tests](#tests)
 - [License](#license)
@@ -134,55 +136,65 @@ More information: ``https://developers.google.com/analytics/devguides/collection
 
 You can use the following snippets to trigger an Ecommerce event with Google Analytics 4 (GA4).
 
+#### Ecommerce item
+
+The ``TagManagerItem`` class allows you to easily create an Ecommerce item. You can set extra parameters with dynamic calls. Method names are used as keys and automatically converted to underscore case.
+
+```php
+use Label84\TagManager\TagManagerItem;
+
+new TagManagerItem(string $id, string $name, float $price, float $quantity);
+```
+
+##### Example: create item
+
+```php
+use Label84\TagManager\TagManagerItem;
+
+$item1 = new TagManagerItem('12345', 'Triblend Android T-Shirt', 15.25, 1);
+$item1->itemBrand('Google')       // will add the item parameter { item_brand: 'Google' }
+      ->itemCategory('Apparel')   // will add the item parameter { item_category: 'Apparel' }
+      ->itemVariant('Gray');      // will add the item parameter { item_variant: 'Gray' }
+```
+
+#### Ecommerce events
+
+The items parameter can be a single ``TagManagerItem`` item or an array of ``TagManagerItem`` items. You can also use plain arrays if you don't want to use the TagManagerItem class.
+
 ```php
 use Label84\TagManager\Facades\TagManager;
 
-$item1 = [
-    'item_name' => 'Triblend Android T-Shirt',
-    'item_id' => '12345',
-    'price' => 15.25,
-    'item_brand' => 'Google',
-    'item_category' => 'Apparel',
-    'item_variant' => 'Gray',
-    'quantity' => 1,
-];
-
-$item2 = [
-    'item_name' => 'Donut Friday Scented T-Shirt',
-    'item_id' => '67890',
-    'price' => 33.75,
-    'item_brand' => 'Google',
-    'item_category' => 'Apparel',
-    'item_variant' => 'Black',
-    'quantity' => 1
-];
-
-$items = [
-    $item1,
-    $item2,
-];
-
 // Product views and interactions
-TagManager::viewItemList(array $items);
-TagManager::viewItem(array $items);
-TagManager::selectItem(array $items);
+TagManager::viewItemList($items);
+TagManager::viewItem($items);
+TagManager::selectItem($items);
 
 // Promotion views and interactions
-TagManager::viewPromotion(array $items);
-TagManager::selectPromotion(array $items);
+TagManager::viewPromotion($items);
+TagManager::selectPromotion($items);
 
 // Pre-purchase interactions
-TagManager::addToWishList(string $currency, float $value, array $items);
-TagManager::addToCart(array $items);
-TagManager::removeFromCart(array $items);
-TagManager::viewCart(string $currency, float $value, array $items);
+TagManager::addToWishList(string $currency, float $value, $items);
+TagManager::addToCart($items);
+TagManager::removeFromCart($items);
+TagManager::viewCart(string $currency, float $value, $items);
 
 // Purchases, checkouts, and refunds
-TagManager::beginCheckout(array $items);
-TagManager::addPaymentInfo(string $currency, float $value, string $coupon, string $paymentType, array $items);
-TagManager::addShippingInfo(string $currency, float $value, string $coupon, string $shippingTier, array $items);
-TagManager::purchase(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, string $coupon, array $items);
-TagManager::refund(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, string $coupon, array $items);
+TagManager::beginCheckout($items);
+TagManager::addPaymentInfo(string $currency, float $value, string $coupon, string $paymentType, $items);
+TagManager::addShippingInfo(string $currency, float $value, string $coupon, string $shippingTier, $items);
+TagManager::purchase(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, string $coupon, $items);
+TagManager::refund(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, string $coupon, $items);
+```
+
+##### Example: call event with item
+
+```php
+use Label84\TagManager\Facades\TagManager;
+
+TagManager::purchase('00001', 'Google', 'EUR', 12.10, 2.10, 0, '', [
+    new TagManagerItem('12345', 'Triblend Android T-Shirt', 10.00, 1),
+]);
 ```
 
 More information: ``https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtm``
