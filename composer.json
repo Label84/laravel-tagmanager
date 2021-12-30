@@ -29,6 +29,6 @@
         "nunomaduro/larastan": "^1.0"
     },
     "require": {
-        "illuminate/support": "^8.76"
+        "illuminate/support": "^8.0"
     }
 }
