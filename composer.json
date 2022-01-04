@@ -4,31 +4,32 @@
     "type": "library",
     "license": "MIT",
     "authors": [
-      {
-        "name": "Label84",
-        "email": "info@tjardo.com"
-      }
-    ],
-    "autoload": {
-      "psr-4": {
-          "Label84\\TagManager\\": "src"
-      }
-    },
-    "extra": {
-      "laravel": {
-          "providers": [
-              "Label84\\TagManager\\TagManagerServiceProvider"
-          ],
-          "aliases": {
-            "TagManager": "Label84\\TagManager\\Facades\\TagManager"
-          }
-      }
+        {
+          "name": "Label84",
+          "email": "info@tjardo.com"
+        }
+    ],     
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "illuminate/support": "^8.0"
     },
     "require-dev": {
         "orchestra/testbench": "^6.0",
         "nunomaduro/larastan": "^1.0"
     },
-    "require": {
-        "illuminate/support": "^8.0"
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Label84\\TagManager\\TagManagerServiceProvider"
+            ],
+          "aliases": {
+              "TagManager": "Label84\\TagManager\\Facades\\TagManager"
+          }
+        }
+    }, 
+    "autoload": {
+        "psr-4": {
+            "Label84\\TagManager\\": "src"
+        }
     }
 }
