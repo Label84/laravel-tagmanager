@@ -181,10 +181,10 @@ TagManager::viewCart(string $currency, float $value, $items);
 
 // Purchases, checkouts, and refunds
 TagManager::beginCheckout($items);
-TagManager::addPaymentInfo(string $currency, float $value, string $coupon, string $paymentType, $items);
-TagManager::addShippingInfo(string $currency, float $value, string $coupon, string $shippingTier, $items);
-TagManager::purchase(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, string $coupon, $items);
-TagManager::refund(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, string $coupon, $items);
+TagManager::addPaymentInfo(string $currency, float $value, string $paymentType, $items, string $coupon = '');
+TagManager::addShippingInfo(string $currency, float $value, string $shippingTier, $items, string $coupon = '');
+TagManager::purchase(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, $items, string $coupon = '');
+TagManager::refund(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, $items, string $coupon = '');
 ```
 
 ##### Example: call event with item

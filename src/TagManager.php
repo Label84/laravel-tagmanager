@@ -163,7 +163,7 @@ class TagManager
     }
 
     /** @param TagManagerItem|array $items */
-    public function addPaymentInfo(string $currency, float $value, string $coupon, string $paymentType, $items, array $variables = []): self
+    public function addPaymentInfo(string $currency, float $value, string $paymentType, $items, string $coupon = '', array $variables = []): self
     {
         $this->event('add_payment_info', array_merge(['ecommerce' => [
             'currency' => $currency,
@@ -177,7 +177,7 @@ class TagManager
     }
 
     /** @param TagManagerItem|array $items */
-    public function addShippingInfo(string $currency, float $value, string $coupon, string $shippingTier, $items, array $variables = []): self
+    public function addShippingInfo(string $currency, float $value, string $shippingTier, $items, string $coupon = '', array $variables = []): self
     {
         $this->event('add_shipping_info', array_merge(['ecommerce' => [
             'currency' => $currency,
@@ -191,7 +191,7 @@ class TagManager
     }
 
     /** @param TagManagerItem|array $items */
-    public function purchase(string $transactionId, string $affiliation, string $currency, float $value, float $tax = 0, float $shipping = 0, string $coupon = '', $items, array $variables = []): self
+    public function purchase(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, $items, string $coupon = '', array $variables = []): self
     {
         $this->event('purchase', array_merge(['ecommerce' => [
             'transaction_id' => $transactionId,
@@ -208,7 +208,7 @@ class TagManager
     }
 
     /** @param TagManagerItem|array $items */
-    public function refund(string $transactionId, string $affiliation, string $currency, float $value, float $tax = 0, float $shipping = 0, string $coupon = '', $items, array $variables = []): self
+    public function refund(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, $items, string $coupon = '', array $variables = []): self
     {
         $this->event('refund', array_merge(['ecommerce' => [
             'transaction_id' => $transactionId,
