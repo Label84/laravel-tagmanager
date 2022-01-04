@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/label84/laravel-tagmanager.svg?style=flat-square)](https://scrutinizer-ci.com/g/label84/laravel-tagmanager)
 [![Total Downloads](https://img.shields.io/packagist/dt/label84/laravel-tagmanager.svg?style=flat-square)](https://packagist.org/packages/label84/laravel-tagmanager)
 
-An easier way to add Google Tag Manager to your Laravel application. Including recommended GTM events support. 
+An easier way to add Google Tag Manager to your Laravel application. Including recommended GTM events support.
 
 - [Requirements](#requirements)
 - [Laravel support](#laravel-support)
@@ -192,7 +192,7 @@ TagManager::refund(string $transactionId, string $affiliation, string $currency,
 ```php
 use Label84\TagManager\Facades\TagManager;
 
-TagManager::purchase('00001', 'Google', 'EUR', 12.10, 2.10, 0, '', [
+TagManager::purchase('00001', 'Google', 'EUR', 12.10, 2.10, 0, [
     new TagManagerItem('12345', 'Triblend Android T-Shirt', 10.00, 1),
 ]);
 ```
