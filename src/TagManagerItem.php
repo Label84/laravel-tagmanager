@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class TagManagerItem extends Fluent
 {
-    public function __construct(string $id, string $name, float $price, float $quantity, array $variables = [])
+    public function __construct(string $id, string $name, float $price, float $quantity = 1, array $variables = [])
     {
         $this->attributes['item_id'] = $id;
         $this->attributes['item_name'] = $name;

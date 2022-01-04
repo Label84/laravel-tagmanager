@@ -191,7 +191,7 @@ class TagManager
     }
 
     /** @param TagManagerItem|array $items */
-    public function purchase(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, string $coupon, $items, array $variables = []): self
+    public function purchase(string $transactionId, string $affiliation, string $currency, float $value, float $tax = 0, float $shipping = 0, string $coupon = '', $items, array $variables = []): self
     {
         $this->event('purchase', array_merge(['ecommerce' => [
             'transaction_id' => $transactionId,
@@ -208,7 +208,7 @@ class TagManager
     }
 
     /** @param TagManagerItem|array $items */
-    public function refund(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, string $coupon, $items, array $variables = []): self
+    public function refund(string $transactionId, string $affiliation, string $currency, float $value, float $tax = 0, float $shipping = 0, string $coupon = '', $items, array $variables = []): self
     {
         $this->event('refund', array_merge(['ecommerce' => [
             'transaction_id' => $transactionId,
