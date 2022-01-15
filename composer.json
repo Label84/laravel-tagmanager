@@ -9,6 +9,13 @@
         "email": "info@tjardo.com"
       }
     ],
+    "require": {
+      "illuminate/support": "^8.0|^9.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0|^7.0",
+        "nunomaduro/larastan": "^1.0"
+    },
     "autoload": {
       "psr-4": {
           "Label84\\TagManager\\": "src"
@@ -24,11 +31,6 @@
           }
       }
     },
-    "require-dev": {
-        "orchestra/testbench": "^6.0",
-        "nunomaduro/larastan": "^1.0"
-    },
-    "require": {
-        "illuminate/support": "^8.0"
-    }
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

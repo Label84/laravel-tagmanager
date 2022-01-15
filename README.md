@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/label84/laravel-tagmanager.svg?style=flat-square)](https://scrutinizer-ci.com/g/label84/laravel-tagmanager)
 [![Total Downloads](https://img.shields.io/packagist/dt/label84/laravel-tagmanager.svg?style=flat-square)](https://packagist.org/packages/label84/laravel-tagmanager)
 
-An easier way to add Google Tag Manager to your Laravel application. Including recommended GTM events support. 
+An easier way to add Google Tag Manager to your Laravel application. Including recommended GTM events support.
 
 - [Requirements](#requirements)
 - [Laravel support](#laravel-support)
@@ -24,6 +24,7 @@ An easier way to add Google Tag Manager to your Laravel application. Including r
 
 | Version | Release |
 |---------|---------|
+| 9.x     | 1.2     |
 | 8.x     | 1.0     |
 
 ## Installation
