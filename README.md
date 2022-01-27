@@ -13,6 +13,10 @@ An easier way to add Google Tag Manager to your Laravel application. Including r
 - [Usage](#usage)
   - [Events](#events)
   - [User-ID](#user-id)
+  - [Ecommerce (GA4)](#ecommerce-ga4)
+    - [Ecommerce Item](#ecommerce-item)
+    - [Ecommerce Events](#ecommerce-events)
+  - [Ecommerce (UA)](#ecommerce-ua)
 - [Tests](#tests)
 - [License](#license)
 
@@ -127,7 +131,109 @@ protected $middlewareGroups = [
 
 By default the 'id' of the User model will be used. You change the key in ``config/tagmanager.php``.
 
-You can find more information about this feature on: ``https://developers.google.com/analytics/devguides/collection/ga4/user-id?technology=tagmanager``
+More information: ``https://developers.google.com/analytics/devguides/collection/ga4/user-id?technology=tagmanager``
+
+### Ecommerce (GA4)
+
+You can use the following snippets to trigger an Ecommerce event with Google Analytics 4 (GA4).
+
+#### Ecommerce item
+
+The ``TagManagerItem`` class allows you to easily create an Ecommerce item. You can set extra parameters with dynamic calls. Method names are used as keys and automatically converted to underscore case.
+
+```php
+use Label84\TagManager\TagManagerItem;
+
+new TagManagerItem(string $id, string $name, float $price, float $quantity);
+```
+
+##### Example: create item
+
+```php
+use Label84\TagManager\TagManagerItem;
+
+$item1 = new TagManagerItem('12345', 'Triblend Android T-Shirt', 15.25, 1);
+$item1->itemBrand('Google')       // will add the item parameter { item_brand: 'Google' }
+      ->itemCategory('Apparel')   // will add the item parameter { item_category: 'Apparel' }
+      ->itemVariant('Gray');      // will add the item parameter { item_variant: 'Gray' }
+```
+
+#### Ecommerce events
+
+The items parameter can be a single ``TagManagerItem`` item or an array of ``TagManagerItem`` items. You can also use plain arrays if you don't want to use the TagManagerItem class.
+
+```php
+use Label84\TagManager\Facades\TagManager;
+
+// Product views and interactions
+TagManager::viewItemList($items);
+TagManager::viewItem($items);
+TagManager::selectItem($items);
+
+// Promotion views and interactions
+TagManager::viewPromotion($items);
+TagManager::selectPromotion($items);
+
+// Pre-purchase interactions
+TagManager::addToWishList(string $currency, float $value, $items);
+TagManager::addToCart($items);
+TagManager::removeFromCart($items);
+TagManager::viewCart(string $currency, float $value, $items);
+
+// Purchases, checkouts, and refunds
+TagManager::beginCheckout($items);
+TagManager::addPaymentInfo(string $currency, float $value, string $paymentType, $items, string $coupon = '');
+TagManager::addShippingInfo(string $currency, float $value, string $shippingTier, $items, string $coupon = '');
+TagManager::purchase(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, $items, string $coupon = '');
+TagManager::refund(string $transactionId, string $affiliation, string $currency, float $value, float $tax, float $shipping, $items, string $coupon = '');
+```
+
+##### Example: call event with item
+
+```php
+use Label84\TagManager\Facades\TagManager;
+
+TagManager::purchase('00001', 'Google', 'EUR', 12.10, 2.10, 0, [
+    new TagManagerItem('12345', 'Triblend Android T-Shirt', 10.00, 1),
+]);
+```
+
+More information: ``https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtm``
+
+### Ecommerce (UA)
+
+You can use the following snippet to trigger an Ecommerce purchase event with Universal Analytics (UA).
+
+```php
+use Label84\TagManager\Facades\TagManager;
+
+TagManager::push(['ecommerce' => [
+    'purchase' => [
+        'actionField' => [
+            'id' => 'T12345',
+            'affiliation' => 'Online Store',
+            'revenue' => '35.43',
+            'tax' => '4.90',
+            'shipping' => '5.99',
+            'coupon' => 'SUMMER_SALE',
+        ],
+        'products' => [[
+            'name' => 'Triblend Android T-Shirt',
+            'id' => '12345',
+            'price' => '15.25',
+            'brand' => 'Google',
+            'category' => 'Apparel',
+            'variant' => 'Gray',
+            'quantity' => 1,
+            'coupon' => '',
+        ], [
+            // more items..
+        ]],
+    ],
+]]);
+```
+
+More information: ``https://developers.google.com/analytics/devguides/collection/ua/gtm/enhanced-ecommerce#purchases``
 
 ## Tests
 
