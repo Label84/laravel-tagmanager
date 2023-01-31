@@ -33,7 +33,7 @@ An easier way to add Google Tag Manager to your Laravel application. Including r
 
 ## Installation
 
-Read the article on Medium.com for a more detailed instruction: [Medium: Add Google Analytics to your Laravel application with Google Tag Manager.](https://tjardo.medium.com/add-google-analytics-to-your-laravel-application-with-google-tag-manager-c32eb0e1dc9a).
+Read the article on Medium.com for a more detailed instruction: [Medium: Add Google Analytics to your Laravel application with Google Tag Manager](https://tjardo.medium.com/add-google-analytics-to-your-laravel-application-with-google-tag-manager-c32eb0e1dc9a).
 
 ### 1. Install package
 
