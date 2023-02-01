@@ -23,6 +23,8 @@ class TagManagerMiddleware
     {
         if ($this->session->has(config('tagmanager.session_name'))) {
             $this->tagManager->set($this->session->get(config('tagmanager.session_name')));
+
+            $this->session->pull(config('tagmanager.session_name'));
         }
 
         $response = $next($request);
