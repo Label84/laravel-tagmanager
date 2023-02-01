@@ -21,10 +21,10 @@ An easier way to add Google Tag Manager to your Laravel application. Including r
 
 ## Laravel support
 
-| Version    | Release |
-|------------|---------|
-| 9.x | 10.x | 1.3     |
-| 8.x        | 1.0     |
+| Version | Release |
+|---------|---------|
+| 9.x     | 1.4     |
+| 8.x     | 1.0     |
 
 ## Installation
 
