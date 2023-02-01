@@ -21,7 +21,7 @@ class TagManagerItem extends Fluent
 
     public function __call($method, $parameters)
     {
-        $this->attributes[Str::snake($method, '_')] = count($parameters) > 0 ? $parameters[0] : true;
+        $this->attributes[Str::snake($method, '_')] = $parameters[0] ?? true;
 
         return $this;
     }

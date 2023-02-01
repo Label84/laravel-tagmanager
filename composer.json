@@ -1,12 +1,12 @@
 {
     "name": "label84/laravel-tagmanager",
-    "description": "An easier way to add Google Tag Manager to your Laravel application.",
+    "description": "Easier way to add Google Tag Manager to your Laravel application.",
     "type": "library",
     "license": "MIT",
     "authors": [
       {
         "name": "Label84",
-        "email": "info@tjardo.com"
+        "email": "info@label.com"
       }
     ],
     "require": {
@@ -25,7 +25,7 @@
             "TagManager": "Label84\\TagManager\\Facades\\TagManager"
           }
       }
-    },    
+    },
     "autoload": {
       "psr-4": {
           "Label84\\TagManager\\": "src"

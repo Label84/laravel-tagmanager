@@ -21,6 +21,10 @@ class TagManagerMiddleware
     /** @return mixed */
     public function handle(Request $request, Closure $next)
     {
+        if ($this->session->has(config('tagmanager.session_name'))) {
+            $this->tagManager->set($this->session->get(config('tagmanager.session_name')));
+        }
+
         $response = $next($request);
 
         $this->session->flash(config('tagmanager.session_name'), $this->tagManager->get());

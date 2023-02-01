@@ -25,6 +25,11 @@ class TagManager
         return $this->data;
     }
 
+    public function set(Collection $data): void
+    {
+        $this->data = $data;
+    }
+
     public function clear(): void
     {
         $this->data = new Collection();

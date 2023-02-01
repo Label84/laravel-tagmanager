@@ -7,7 +7,6 @@
 
 An easier way to add Google Tag Manager to your Laravel application. Including recommended GTM events support.
 
-- [Requirements](#requirements)
 - [Laravel support](#laravel-support)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -20,16 +19,12 @@ An easier way to add Google Tag Manager to your Laravel application. Including r
 - [Tests](#tests)
 - [License](#license)
 
-## Requirements
-
-- Laravel 8.x
-
 ## Laravel support
 
-| Version | Release |
-|---------|---------|
-| 9.x     | 1.2     |
-| 8.x     | 1.0     |
+| Version    | Release |
+|------------|---------|
+| 9.x | 10.x | 1.3     |
+| 8.x        | 1.0     |
 
 ## Installation
 
@@ -112,7 +107,7 @@ TagManager::login(['foo' => 'bar']);
 TagManager::register(['foo' => 'bar']);
 ```
 
-You can find a list of recommended events on: ``https://support.google.com/analytics/answer/9267735?hl=en``
+You can find a list of recommended events on: [https://support.google.com/analytics/answer/9267735?hl=en](https://support.google.com/analytics/answer/9267735?hl=en)
 
 ### User-ID
 
@@ -133,7 +128,7 @@ protected $middlewareGroups = [
 
 By default the 'id' of the User model will be used. You change the key in ``config/tagmanager.php``.
 
-More information: ``https://developers.google.com/analytics/devguides/collection/ga4/user-id?technology=tagmanager``
+More information: [https://developers.google.com/analytics/devguides/collection/ga4/user-id?technology=tagmanager](https://developers.google.com/analytics/devguides/collection/ga4/user-id?technology=tagmanager)
 
 ### Ecommerce (GA4)
 
@@ -200,7 +195,7 @@ TagManager::purchase('00001', 'Google', 'EUR', 12.10, 2.10, 0, [
 ]);
 ```
 
-More information: ``https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtm``
+More information: [https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtm](https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtm)
 
 ### Ecommerce (UA)
 
@@ -235,7 +230,7 @@ TagManager::push(['ecommerce' => [
 ]]);
 ```
 
-More information: ``https://developers.google.com/analytics/devguides/collection/ua/gtm/enhanced-ecommerce#purchases``
+More information: [https://developers.google.com/analytics/devguides/collection/ua/gtm/enhanced-ecommerce#purchases](https://developers.google.com/analytics/devguides/collection/ua/gtm/enhanced-ecommerce#purchases)
 
 ## Tests
 
