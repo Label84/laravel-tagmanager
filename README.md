@@ -15,7 +15,6 @@ An easier way to add Google Tag Manager to your Laravel application. Including r
   - [Ecommerce (GA4)](#ecommerce-ga4)
     - [Ecommerce Item](#ecommerce-item)
     - [Ecommerce Events](#ecommerce-events)
-  - [Ecommerce (UA)](#ecommerce-ua)
 - [Tests](#tests)
 - [License](#license)
 
@@ -196,41 +195,6 @@ TagManager::purchase('00001', 'Google', 'EUR', 12.10, 2.10, 0, [
 ```
 
 More information: [https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtm](https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtm)
-
-### Ecommerce (UA)
-
-You can use the following snippet to trigger an Ecommerce purchase event with Universal Analytics (UA).
-
-```php
-use Label84\TagManager\Facades\TagManager;
-
-TagManager::push(['ecommerce' => [
-    'purchase' => [
-        'actionField' => [
-            'id' => 'T12345',
-            'affiliation' => 'Online Store',
-            'revenue' => '35.43',
-            'tax' => '4.90',
-            'shipping' => '5.99',
-            'coupon' => 'SUMMER_SALE',
-        ],
-        'products' => [[
-            'name' => 'Triblend Android T-Shirt',
-            'id' => '12345',
-            'price' => '15.25',
-            'brand' => 'Google',
-            'category' => 'Apparel',
-            'variant' => 'Gray',
-            'quantity' => 1,
-            'coupon' => '',
-        ], [
-            // more items..
-        ]],
-    ],
-]]);
-```
-
-More information: [https://developers.google.com/analytics/devguides/collection/ua/gtm/enhanced-ecommerce#purchases](https://developers.google.com/analytics/devguides/collection/ua/gtm/enhanced-ecommerce#purchases)
 
 ## Tests
 
