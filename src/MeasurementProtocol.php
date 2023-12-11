@@ -15,7 +15,7 @@ class MeasurementProtocol
 
     public function __construct()
     {
-        $this->clientId = session(config('tagmanager.measurement_protocol_client_id_session_key'));
+        $this->clientId = session(config('tagmanager.measurement_protocol_client_id_session_key'), '');
     }
 
     public function event(string $name, array $params = null): array
