@@ -234,9 +234,10 @@ Add the following snippet to the head of your blade layout file (below the exist
 use Label84\TagManager\Facades\MeasurementProtocol;
 
 MeasurementProtocol::event('some_event', ['foo' => 'bar']);
-```
 
-The User-ID feature is set automatically if the ``TagManagerUserIdMiddleware`` is enabled.
+// Set a specific User-ID for this event (you can customize the key in the config file)
+MeasurementProtocol::user($someUser)->event('some_event', ['foo' => 'bar']);
+```
 
 You can view the events directly in the Google Analytics UI under Realtime > Events.
 
