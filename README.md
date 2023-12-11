@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/label84/laravel-tagmanager.svg?style=flat-square)](https://scrutinizer-ci.com/g/label84/laravel-tagmanager)
 [![Total Downloads](https://img.shields.io/packagist/dt/label84/laravel-tagmanager.svg?style=flat-square)](https://packagist.org/packages/label84/laravel-tagmanager)
 
-Easier way to add Google Tag Manager to your Laravel application. Including support for User ID, E-commerce and Server Side Events (Measurement Protocol).
+Easier way to add Google Tag Manager to your Laravel application. Including support for User-ID, E-commerce and Server Side Events (Measurement Protocol).
 
 - [Laravel support](#laravel-support)
 - [Installation](#installation)
@@ -113,7 +113,7 @@ You can find a list of recommended events on: [https://support.google.com/analyt
 
 This package also supports the User-ID feature.
 
-To start using the User-ID feature you've to add the TagManagerUserIdMiddleware in your 'web' middleware group directly after the TagManagerMiddleware.
+To start using the User-ID feature you've to add the ``TagManagerUserIdMiddleware`` in your 'web' middleware group directly after the ``TagManagerMiddleware``.
 
 ```php
 // app/Http/Kernel.php
@@ -220,7 +220,7 @@ GOOGLE_MEASUREMENT_ID=G-XXXXXX
 GOOGLE_MEASUREMENT_PROTOCOL_API_SECRET=XXXXXX
 ```
 
-Add the following snippet to the head of your blade layout file (below the ``x-tagmanager-head`` tag).
+Add the following snippet to the head of your blade layout file (below the existing ``x-tagmanager-head`` tag).
 
 ```html
     <x-tagmanager-head />
@@ -235,6 +235,8 @@ use Label84\TagManager\Facades\MeasurementProtocol;
 
 MeasurementProtocol::event('some_event', ['foo' => 'bar']);
 ```
+
+The User-ID feature is set automatically if the ``TagManagerUserIdMiddleware`` is enabled.
 
 You can view the events directly in the Google Analytics UI under Realtime > Events.
 
