@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/label84/laravel-tagmanager.svg?style=flat-square)](https://scrutinizer-ci.com/g/label84/laravel-tagmanager)
 [![Total Downloads](https://img.shields.io/packagist/dt/label84/laravel-tagmanager.svg?style=flat-square)](https://packagist.org/packages/label84/laravel-tagmanager)
 
-An easier way to add Google Tag Manager to your Laravel application. Including recommended GTM events support.
+Easier way to add Google Tag Manager to your Laravel application. Including support for User ID, E-commerce and Server Side Events (Measurement Protocol).
 
 - [Laravel support](#laravel-support)
 - [Installation](#installation)
@@ -15,6 +15,9 @@ An easier way to add Google Tag Manager to your Laravel application. Including r
   - [Ecommerce (GA4)](#ecommerce-ga4)
     - [Ecommerce Item](#ecommerce-item)
     - [Ecommerce Events](#ecommerce-events)
+- [Server Side Events](#server-side-events)
+  - [Measurement Protocol](#measurement-protocol)
+  - [Measurement Protocol Debug Mode](#measurement-protocol-debug-mode)
 - [Tests](#tests)
 - [License](#license)
 
@@ -87,8 +90,6 @@ Go to ``https://tagmanager.google.com`` and copy the 'Container ID' of the accou
 ## Usage
 
 ```php
-// DashboardController.php (example)
-
 use Label84\TagManager\Facades\TagManager;
 
 TagManager::push(['foo' => 'bar']);
@@ -195,6 +196,60 @@ TagManager::purchase('00001', 'Google', 'EUR', 12.10, 2.10, 0, [
 ```
 
 More information: [https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtm](https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtm)
+
+## Server Side Events
+
+The Google Analytics Measurement Protocol allows developers to make HTTP requests to send raw user interaction data directly to Google Analytics servers. This allows developers to measure how users interact with their business from almost any environment. Developers can then use the Measurement Protocol to:
+
+- Measure user activity in new environments.
+- Tie online to offline behavior.
+- Send data from both the client and server.
+
+### Measurement Protocol
+
+You need complete the general installation steps first, such as adding the ``.env`` variables, adding the head and body tags to your layout file and adding the ``TagManagerMiddleware``.
+
+Add the following extra variables to your .env file.
+
+```sh
+// .env
+
+# Found in the Google Analytics UI under Admin > Data Streams > choose your stream > Measurement ID. The measurement_id isn't your Stream ID.
+GOOGLE_MEASUREMENT_ID=G-XXXXXX
+# Found in the Google Analytics UI under Admin > Data Streams > choose your stream > Measurement Protocol API Secrets
+GOOGLE_MEASUREMENT_PROTOCOL_API_SECRET=XXXXXX
+```
+
+Add the following snippet to the head of your blade layout file (below the ``x-tagmanager-head`` tag).
+
+```html
+    <x-tagmanager-head />
+    <x-tagmanager-measurement-protocol-client-id />
+</head>
+
+<body>
+```
+
+```php
+use Label84\TagManager\Facades\MeasurementProtocol;
+
+MeasurementProtocol::event('some_event', ['foo' => 'bar']);
+```
+
+You can view the events directly in the Google Analytics UI under Realtime > Events.
+
+### Measurement Protocol Debug Mode
+
+You can enable the debug mode by calling the ``debug()`` method. This will return a JSON validation response instead of sending the request to Google Analytics.
+If there are any errors, they will be returned in the validation messages response. If there are no errors, the validation response array will be empty.
+
+```php
+use Label84\TagManager\Facades\MeasurementProtocol;
+
+dd(
+    MeasurementProtocol::debug()->event('some_event', ['foo' => 'bar'])
+);
+```
 
 ## Tests
 
