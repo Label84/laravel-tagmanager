@@ -5,6 +5,7 @@ namespace Label84\TagManager;
 use Illuminate\Support\ServiceProvider;
 use Label84\TagManager\View\Components\Body;
 use Label84\TagManager\View\Components\Head;
+use Label84\TagManager\View\Components\MeasurementProtocolClientId;
 
 class TagManagerServiceProvider extends ServiceProvider
 {
@@ -16,7 +17,12 @@ class TagManagerServiceProvider extends ServiceProvider
             return new TagManager();
         });
 
+        $this->app->singleton(MeasurementProtocol::class, function ($app) {
+            return new MeasurementProtocol();
+        });
+
         $this->app->alias(TagManager::class, 'tagmanager');
+        $this->app->alias(MeasurementProtocol::class, 'measurement_protocol');
     }
 
     public function boot(): void
@@ -27,11 +33,14 @@ class TagManagerServiceProvider extends ServiceProvider
             ], 'config');
         }
 
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'tagmanager');
 
         $this->loadViewComponentsAs('tagmanager', [
             Head::class,
             Body::class,
+            MeasurementProtocolClientId::class,
         ]);
     }
 }
