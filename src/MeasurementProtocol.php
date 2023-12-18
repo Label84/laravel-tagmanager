@@ -28,6 +28,12 @@ class MeasurementProtocol
             $event['params'] = $params;
         }
 
+        if (config('tagmanager.enabled') === false) {
+            return [
+                'status' => 'tagmanager disabled',
+            ];
+        }
+
         $response = Http::withHeaders([
             'content-type' => 'application/json',
         ])
