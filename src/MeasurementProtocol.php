@@ -18,7 +18,7 @@ class MeasurementProtocol
         $this->clientId = session(config('tagmanager.measurement_protocol_client_id_session_key'), '');
     }
 
-    public function event(string $name, array $params = null): array
+    public function event(string $name, ?array $params = null): array
     {
         $event = [
             'name' => $name,
@@ -37,19 +37,19 @@ class MeasurementProtocol
         $response = Http::withHeaders([
             'content-type' => 'application/json',
         ])
-        ->withQueryParameters([
-            'measurement_id' => config('tagmanager.measurement_id'),
-            'api_secret' => config('tagmanager.measurement_protocol_api_secret'),
-        ])
-        ->post($this->route(), array_merge(
-            [
-                'client_id' => $this->clientId,
-                'events' => [$event],
-            ],
-            $this->getUserIdArray(),
-        ));
+            ->withQueryParameters([
+                'measurement_id' => config('tagmanager.measurement_id'),
+                'api_secret' => config('tagmanager.measurement_protocol_api_secret'),
+            ])
+            ->post($this->route(), array_merge(
+                [
+                    'client_id' => $this->clientId,
+                    'events' => [$event],
+                ],
+                $this->getUserIdArray(),
+            ));
 
-        if($this->isDebugEnabled) {
+        if ($this->isDebugEnabled) {
             return $response->json();
         }
 
