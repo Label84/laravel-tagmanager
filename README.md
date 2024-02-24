@@ -2,7 +2,6 @@
 
 [![Latest Stable Version](https://poser.pugx.org/label84/laravel-tagmanager/v/stable?style=flat-square)](https://packagist.org/packages/label84/laravel-tagmanager)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Quality Score](https://img.shields.io/scrutinizer/g/label84/laravel-tagmanager.svg?style=flat-square)](https://scrutinizer-ci.com/g/label84/laravel-tagmanager)
 [![Total Downloads](https://img.shields.io/packagist/dt/label84/laravel-tagmanager.svg?style=flat-square)](https://packagist.org/packages/label84/laravel-tagmanager)
 
 Easier way to add Google Tag Manager to your Laravel application. Including support for User-ID, E-commerce and Server Side Events (Measurement Protocol).
@@ -25,8 +24,8 @@ Easier way to add Google Tag Manager to your Laravel application. Including supp
 
 | Version | Release |
 |---------|---------|
+| 11.x    | 1.3     |
 | 10.x    | 1.3     |
-| 9.x     | 1.3     |
 
 ## Installation
 
