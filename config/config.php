@@ -53,5 +53,5 @@ return [
     /**
      * The session key used to store the measurement protocol client id.
      */
-    'measurement_protocol_client_id_session_key' => 'measurement-protocol-client-id'
+    'measurement_protocol_client_id_session_key' => 'measurement-protocol-client-id',
 ];

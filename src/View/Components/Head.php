@@ -11,8 +11,11 @@ use Label84\TagManager\TagManager;
 class Head extends Component
 {
     public TagManager $tagManager;
+
     public Session $session;
+
     public string $id;
+
     public bool $isEnabled;
 
     public function __construct(TagManager $tagManager, Session $session)

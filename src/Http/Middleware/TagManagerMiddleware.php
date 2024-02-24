@@ -10,6 +10,7 @@ use Label84\TagManager\TagManager;
 class TagManagerMiddleware
 {
     private TagManager $tagManager;
+
     private Session $session;
 
     public function __construct(TagManager $tagManager, Session $session)

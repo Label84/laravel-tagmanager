@@ -8,6 +8,7 @@ use Illuminate\View\View;
 class Body extends Component
 {
     public string $id;
+
     public bool $isEnabled;
 
     public function __construct()
