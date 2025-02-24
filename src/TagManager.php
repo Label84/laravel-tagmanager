@@ -10,7 +10,7 @@ class TagManager
 
     public function __construct()
     {
-        $this->data = new Collection();
+        $this->data = new Collection;
     }
 
     public function push(array $variables): self
@@ -32,7 +32,7 @@ class TagManager
 
     public function clear(): void
     {
-        $this->data = new Collection();
+        $this->data = new Collection;
     }
 
     public function event(string $name, array $variables = []): self
