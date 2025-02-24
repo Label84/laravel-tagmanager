@@ -29,7 +29,7 @@ class Head extends Component
 
     public function render(): View
     {
-        $sessionData = $this->session->get(config('tagmanager.session_name')) ?? new Collection();
+        $sessionData = $this->session->get(config('tagmanager.session_name')) ?? new Collection;
 
         $data = $sessionData->merge($this->tagManager->get());
 

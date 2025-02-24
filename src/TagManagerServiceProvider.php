@@ -14,11 +14,11 @@ class TagManagerServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'tagmanager');
 
         $this->app->singleton(TagManager::class, function ($app) {
-            return new TagManager();
+            return new TagManager;
         });
 
         $this->app->singleton(MeasurementProtocol::class, function ($app) {
-            return new MeasurementProtocol();
+            return new MeasurementProtocol;
         });
 
         $this->app->alias(TagManager::class, 'tagmanager');
