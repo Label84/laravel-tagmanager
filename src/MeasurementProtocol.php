@@ -34,6 +34,7 @@ class MeasurementProtocol
             ];
         }
 
+        /** @var \Illuminate\Http\Client\Response $response */
         $response = Http::withHeaders([
             'content-type' => 'application/json',
         ])
