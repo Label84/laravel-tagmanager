@@ -53,18 +53,20 @@ Add the head tag directly above the closing ``</head>`` tag and the body tag dir
 
 ### 3. Add the TagManagerMiddleware to your Kernel
 
-Add the TagManagerMiddleware directly after the StartSession middleware in your 'web' middleware group.
+Add the `TagManagerMiddleware` to your 'web' middleware group in your `bootstrap/app.php` file.
 
 ```php
-// app/Http/Kernel.php
+// bootstrap/app.php
 
-protected $middlewareGroups = [
-    'web' => [
-        \App\Http\Middleware\EncryptCookies::class,
-        ...
-        \Illuminate\Session\Middleware\StartSession::class,
-        \Label84\TagManager\Http\Middleware\TagManagerMiddleware::class,
-        ...
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        //
+    )
+    ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->web(append: [
+            \Label84\TagManager\Http\Middleware\TagManagerMiddleware::class,
+        ]);
+    })
 ```
 
 ### 4. Publish the config file
