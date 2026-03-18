@@ -24,6 +24,7 @@ Easier way to add Google Tag Manager to your Laravel application. Including supp
 
 | Version | Release |
 |---------|---------|
+| 13.x    | ^1.5    |
 | 12.x    | ^1.5    |
 | 11.x    | ^1.5    |
 
@@ -258,6 +259,7 @@ dd(
 ## Tests
 
 ```sh
+./vendor/bin/pint
 ./vendor/bin/phpstan analyze
 ```
 

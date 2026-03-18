@@ -3,6 +3,7 @@
 namespace Label84\TagManager;
 
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 class MeasurementProtocol
@@ -34,7 +35,7 @@ class MeasurementProtocol
             ];
         }
 
-        /** @var \Illuminate\Http\Client\Response $response */
+        /** @var Response $response */
         $response = Http::withHeaders([
             'content-type' => 'application/json',
         ])
