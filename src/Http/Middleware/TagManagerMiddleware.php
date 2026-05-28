@@ -19,18 +19,21 @@ class TagManagerMiddleware
         $this->session = $session;
     }
 
-    /** @return mixed */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
-        if ($this->session->has(config('tagmanager.session_name'))) {
-            $this->tagManager->set($this->session->get(config('tagmanager.session_name')));
+        $sessionName = config('tagmanager.session_name');
 
-            $this->session->pull(config('tagmanager.session_name'));
+        if ($this->session->has($sessionName)) {
+            $this->tagManager->set(
+                collect((array) $this->session->get($sessionName, []))
+            );
+
+            $this->session->pull($sessionName);
         }
 
         $response = $next($request);
 
-        $this->session->flash(config('tagmanager.session_name'), $this->tagManager->get());
+        $this->session->flash($sessionName, $this->tagManager->get());
 
         return $response;
     }

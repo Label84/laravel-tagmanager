@@ -118,14 +118,18 @@ This package also supports the User-ID feature.
 To start using the User-ID feature you've to add the ``TagManagerUserIdMiddleware`` in your 'web' middleware group directly after the ``TagManagerMiddleware``.
 
 ```php
-// app/Http/Kernel.php
+// bootstrap/app.php
 
-protected $middlewareGroups = [
-    'web' => [
-        ...
-        \Label84\TagManager\Http\Middleware\TagManagerMiddleware::class,
-        \Label84\TagManager\Http\Middleware\TagManagerUserIdMiddleware::class,
-        ...
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        //
+    )
+    ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->web(append: [
+            \Label84\TagManager\Http\Middleware\TagManagerMiddleware::class,
+            \Label84\TagManager\Http\Middleware\TagManagerUserIdMiddleware::class,
+        ]);
+    })
 ```
 
 By default the 'id' of the User model will be used. You change the key in ``config/tagmanager.php``.
